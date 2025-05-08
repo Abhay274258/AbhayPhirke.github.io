@@ -1,4 +1,4 @@
-import CapstonePresentation from "@/components/CapstonePresentation";
+import CapstonePresentation from "@/components/CapstonePresentations";
 
 const Capstone = () => {
   return (
