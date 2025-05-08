@@ -105,7 +105,7 @@ const Projects = () => {
     },
     {
       title: "Thermal Response of Disc Brake System",
-      image: "/brake.jpg", // Replace with your actual image
+      image: "/Screenshot 2025-05-02 150741.png", // Replace with your actual image
       category: "Research Presentation",
       description:
         "A slide-style presentation based on the research paper reviewing thermo-mechanical analysis and optimization of disc brake systems.",
