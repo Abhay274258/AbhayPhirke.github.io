@@ -17,25 +17,25 @@ const Certifications = () => {
     },
     {
       title: "SolidWorks Professional Certification",
-      issuer: "Dassault Systèmes",
+      issuer: "RVM CAD",
       date: "January 2024",
       description: "Professional certification validating expertise in SolidWorks design and modeling capabilities."
     },
     {
       title: "Finite Element Analysis Fundamentals",
-      issuer: "Infosys Springboard",
+      issuer: "Udemy",
       date: "August 2024",
       description: "Advanced training in FEA principles, mesh generation, boundary conditions, and results interpretation."
     },
     {
       title: "Python for Engineering Applications",
-      issuer: "Coursera",
+      issuer: "Infosys Springboard",
       date: "March 2024",
       description: "Comprehensive course on applying Python programming for solving engineering problems and data analysis."
     },
     {
       title: "AutoCAD Professional",
-      issuer: "Autodesk",
+      issuer: "Udemy",
       date: "November 2024",
       description: "Professional-level certification in AutoCAD drafting, design, and documentation."
     }
