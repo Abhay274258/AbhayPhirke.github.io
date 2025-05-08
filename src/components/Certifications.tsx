@@ -65,20 +65,8 @@ const Certifications = () => {
               <p className="text-gray-700">Graduated with distinction (8.8 CGPA) in Mechanical Engineering</p>
             </div>
             
-            <div className="bg-engineer-blue/5 p-6 rounded-lg border-l-4 border-engineer-blue">
-              <h4 className="font-bold mb-2">Design Competition</h4>
-              <p className="text-gray-700">First prize in National CAD Design Competition 2024</p>
-            </div>
             
-            <div className="bg-engineer-blue/5 p-6 rounded-lg border-l-4 border-engineer-blue">
-              <h4 className="font-bold mb-2">Research Publication</h4>
-              <p className="text-gray-700">Co-authored paper on sustainable materials in manufacturing</p>
-            </div>
-            
-            <div className="bg-engineer-blue/5 p-6 rounded-lg border-l-4 border-engineer-blue">
-              <h4 className="font-bold mb-2">Technical Leadership</h4>
-              <p className="text-gray-700">Led student team in designing award-winning energy-efficient vehicle</p>
-            </div>
+           
           </div>
         </div>
 
