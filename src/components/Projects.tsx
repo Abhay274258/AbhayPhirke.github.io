@@ -8,21 +8,60 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
-const Projects = () => {
-  const [activeProject, setActiveProject] = useState(0);
+// Reusable presentation viewer for slide-based project
+const PresentationViewer = ({ slides }) => {
+  const [currentSlide, setCurrentSlide] = useState(0);
 
+  const goNext = () =>
+    setCurrentSlide((prev) =>
+      prev + 1 < slides.length ? prev + 1 : prev
+    );
+  const goPrev = () =>
+    setCurrentSlide((prev) => (prev > 0 ? prev - 1 : prev));
+
+  const { title, content } = slides[currentSlide];
+
+  return (
+    <div className="p-8 animate-fade-in">
+      <h3 className="text-xl font-bold mb-3 text-engineer-blue">{title}</h3>
+      <p className="text-gray-700 mb-6">{content}</p>
+
+      <div className="flex justify-between">
+        <button
+          onClick={goPrev}
+          disabled={currentSlide === 0}
+          className="bg-engineer-blue text-white px-4 py-2 rounded disabled:opacity-50"
+        >
+          Previous
+        </button>
+        <button
+          onClick={goNext}
+          disabled={currentSlide === slides.length - 1}
+          className="bg-engineer-blue text-white px-4 py-2 rounded disabled:opacity-50"
+        >
+          Next
+        </button>
+      </div>
+      <div className="mt-2 text-sm text-gray-500 text-right">
+        Slide {currentSlide + 1} of {slides.length}
+      </div>
+    </div>
+  );
+};
+
+const Projects = () => {
   const projects = [
     {
       title: "Comparative Study on Additive vs Traditional Manufacturing",
       image: "/manufacturing.jpg",
       category: "Research",
       description:
-        "This project involved a comprehensive analysis of additive manufacturing techniques compared to traditional manufacturing methods. The study evaluated cost-effectiveness, material properties, and production efficiency.",
+        "This project involved a comprehensive analysis of additive manufacturing techniques compared to traditional methods. The study evaluated cost-effectiveness, material properties, and production efficiency.",
       technologies: ["CATIA V5", "Material Analysis", "Cost Modeling"],
       outcomes: [
-        "Identified specific use-cases where additive manufacturing offers significant advantages",
+        "Identified specific use-cases where additive manufacturing offers advantages",
         "Developed a decision framework for manufacturing process selection",
-        "Created detailed cost and efficiency models for comparison",
+        "Created cost and efficiency models for comparison",
       ],
     },
     {
@@ -30,12 +69,12 @@ const Projects = () => {
       image: "/desalination.jpg",
       category: "Design & Simulation",
       description:
-        "Designed and simulated a compact water desalination system using CAD modeling and computational fluid dynamics. The project focused on improving efficiency while reducing energy consumption.",
+        "Designed and simulated a compact water desalination system using CAD modeling and CFD. The project focused on efficiency and reduced energy consumption.",
       technologies: ["SolidWorks", "ANSYS CFD", "Thermal Analysis"],
       outcomes: [
-        "Achieved 15% improvement in water recovery rate compared to benchmark systems",
-        "Reduced energy consumption by implementing an innovative heat recovery system",
-        "Designed modular components for easy maintenance and scaling",
+        "Improved water recovery rate by 15%",
+        "Reduced energy consumption via innovative heat recovery",
+        "Modular design for easy maintenance",
       ],
     },
     {
@@ -43,12 +82,12 @@ const Projects = () => {
       image: "/manufacturing.jpg",
       category: "Thermal Simulation",
       description:
-        "Engineered a helical coil heat exchanger optimized for industrial applications. The project involved thermal simulation, stress analysis, and prototype development.",
+        "Engineered a helical coil heat exchanger for industrial use. Focus on simulation, stress analysis, and prototyping.",
       technologies: ["ANSYS Thermal", "AutoCAD", "Prototype Testing"],
       outcomes: [
-        "Improved heat transfer efficiency by 20% through geometric optimization",
-        "Validated simulation results with physical prototype testing",
-        "Developed design guidelines for helical heat exchangers in high-pressure environments",
+        "20% better heat transfer via geometric optimization",
+        "Validated results through prototyping",
+        "Developed design guidelines for high-pressure use",
       ],
     },
     {
@@ -56,12 +95,53 @@ const Projects = () => {
       image: "/placeholder.jpg",
       category: "Performance Analysis",
       description:
-        "Conducted a comprehensive analysis of industrial refrigeration systems using CoolPack software. The project aimed at identifying efficiency improvements and reducing environmental impact.",
+        "Analyzed industrial refrigeration using CoolPack. Aimed at improving efficiency and lowering environmental impact.",
       technologies: ["CoolPack", "Thermodynamic Analysis", "Python"],
       outcomes: [
-        "Identified system modifications to reduce energy consumption by 12%",
-        "Developed a Python script for automated performance monitoring",
-        "Created a comprehensive report with recommendations for refrigerant selection",
+        "Energy consumption reduced by 12%",
+        "Built Python script for automated monitoring",
+        "Provided refrigerant selection recommendations",
+      ],
+    },
+    {
+      title: "Thermal Response of Disc Brake System",
+      image: "/brake.jpg", // Replace with your actual image
+      category: "Research Presentation",
+      description:
+        "A slide-style presentation based on the research paper reviewing thermo-mechanical analysis and optimization of disc brake systems.",
+      technologies: ["Thermal Analysis", "Brake Design", "FEM"],
+      isPresentation: true,
+      slides: [
+        {
+          title: "Project Introduction",
+          content:
+            "This research focuses on investigating the thermal response of disc brake systems and proposes performance-enhancing improvements.",
+        },
+        {
+          title: "Research Motivation",
+          content:
+            "Heat buildup in disc brakes reduces performance and safety. This study aims to address such challenges with optimized designs.",
+        },
+        {
+          title: "Thermal Stress Factors",
+          content:
+            "Includes friction heat generation, material stress points, and the effects of high operating temperatures on brake reliability.",
+        },
+        {
+          title: "Proposed Improvements",
+          content:
+            "Design changes like ventilation patterns, lightweight materials, and structural optimization to reduce rotor weight and heat retention.",
+        },
+        {
+          title: "Conclusion",
+          content:
+            "Proposed brake design improves braking efficiency by 15% and reduces rotor weight by 10%, paving the way for future enhancements.",
+        },
+        {
+          title: "📄 View Full Paper",
+          content:
+            "You can download and view the full research paper by clicking the link below:\n\n👉 [Download PDF](/Investigation_of_Thermal_Response_of_Disc_Brake.pdf)",
+        },
       ],
     },
   ];
@@ -81,10 +161,7 @@ const Projects = () => {
         </div>
 
         <Carousel
-          opts={{
-            align: "start",
-            loop: true,
-          }}
+          opts={{ align: "start", loop: true }}
           className="w-full max-w-5xl mx-auto"
         >
           <CarouselContent>
@@ -106,47 +183,51 @@ const Projects = () => {
                       </div>
                     </div>
 
-                    <div className="p-8">
-                      <h3 className="text-2xl font-bold mb-3 text-engineer-blue animate-fade-in">
-                        {project.title}
-                      </h3>
-                      <p className="text-gray-700 mb-6 animate-fade-in">
-                        {project.description}
-                      </p>
+                    {project.isPresentation ? (
+                      <PresentationViewer slides={project.slides} />
+                    ) : (
+                      <div className="p-8">
+                        <h3 className="text-2xl font-bold mb-3 text-engineer-blue animate-fade-in">
+                          {project.title}
+                        </h3>
+                        <p className="text-gray-700 mb-6 animate-fade-in">
+                          {project.description}
+                        </p>
 
-                      <div className="mb-6 animate-fade-in">
-                        <h4 className="font-bold text-engineer-blue mb-2 flex items-center">
-                          <BookOpen size={18} className="mr-2" />
-                          Technologies Used
-                        </h4>
-                        <div className="flex flex-wrap gap-2">
-                          {project.technologies.map((tech, idx) => (
-                            <span
-                              key={idx}
-                              className="bg-engineer-blue/10 text-engineer-blue px-3 py-1 rounded-full text-sm transform transition-all duration-300 hover:scale-105 hover:bg-engineer-blue hover:text-white"
-                            >
-                              {tech}
-                            </span>
-                          ))}
+                        <div className="mb-6 animate-fade-in">
+                          <h4 className="font-bold text-engineer-blue mb-2 flex items-center">
+                            <BookOpen size={18} className="mr-2" />
+                            Technologies Used
+                          </h4>
+                          <div className="flex flex-wrap gap-2">
+                            {project.technologies.map((tech, idx) => (
+                              <span
+                                key={idx}
+                                className="bg-engineer-blue/10 text-engineer-blue px-3 py-1 rounded-full text-sm transform transition-all duration-300 hover:scale-105 hover:bg-engineer-blue hover:text-white"
+                              >
+                                {tech}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+
+                        <div className="animate-fade-in">
+                          <h4 className="font-bold text-engineer-blue mb-2">
+                            Key Outcomes
+                          </h4>
+                          <ul className="list-disc pl-5 space-y-1 text-gray-700">
+                            {project.outcomes.map((outcome, idx) => (
+                              <li
+                                key={idx}
+                                className="transition-all duration-300 hover:text-engineer-blue"
+                              >
+                                {outcome}
+                              </li>
+                            ))}
+                          </ul>
                         </div>
                       </div>
-
-                      <div className="animate-fade-in">
-                        <h4 className="font-bold text-engineer-blue mb-2">
-                          Key Outcomes
-                        </h4>
-                        <ul className="list-disc pl-5 space-y-1 text-gray-700">
-                          {project.outcomes.map((outcome, idx) => (
-                            <li
-                              key={idx}
-                              className="transition-all duration-300 hover:text-engineer-blue"
-                            >
-                              {outcome}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
+                    )}
                   </div>
                 </div>
               </CarouselItem>
