@@ -40,7 +40,7 @@ const Projects = () => {
     },
     {
       title: "Helical Coil Heat Exchanger",
-      image: "/placeholder.jpg",
+      image: "/manufacturing.jpg",
       category: "Thermal Simulation",
       description:
         "Engineered a helical coil heat exchanger optimized for industrial applications. The project involved thermal simulation, stress analysis, and prototype development.",
@@ -53,7 +53,7 @@ const Projects = () => {
     },
     {
       title: "Refrigeration System Analysis",
-      image: "/placeholder.svg",
+      image: "/placeholder.jpg",
       category: "Performance Analysis",
       description:
         "Conducted a comprehensive analysis of industrial refrigeration systems using CoolPack software. The project aimed at identifying efficiency improvements and reducing environmental impact.",
