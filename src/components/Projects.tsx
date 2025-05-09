@@ -92,7 +92,7 @@ const Projects = () => {
     },
     {
       title: "Refrigeration System Analysis",
-      image: "/placeholder.jpg",
+      image: "/coolpack.jpg",
       category: "Performance Analysis",
       description:
         "Analyzed industrial refrigeration using CoolPack. Aimed at improving efficiency and lowering environmental impact.",
