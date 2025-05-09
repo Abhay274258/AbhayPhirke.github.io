@@ -79,7 +79,7 @@ const Projects = () => {
     },
     {
       title: "Helical Coil Heat Exchanger",
-      image: "/manufacturing.jpg",
+      image: "/placeholder.jpg",
       category: "Thermal Simulation",
       description:
         "Engineered a helical coil heat exchanger for industrial use. Focus on simulation, stress analysis, and prototyping.",
